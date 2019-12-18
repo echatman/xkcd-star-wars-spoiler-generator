@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+    <style>
+      @font-face {
+          font-family: xkcd-script;
+          src: url('https://cdn.rawgit.com/ipython/xkcd-font/master/xkcd-script/font/xkcd-script.woff') format('woff');
+      }
+      .refreshable {
+        cursor:pointer;
+      }
+    </style>
+    <script type="text/javascript">
+    var NEW_VILLIANS = ["KYLE REN", "MALLOC", "DARTH SEBELIUS", "THERANOS", "LORD JUUL"];
+    var NEW_FRIENDS = ["KIM SPACEMEASURER", "TEEN YODA", "DAB TWEETDECK", "YAZ PROGESTIN", "TI-83"];
+    var LIGHTSABER_COLORS = ["BEIGE", "OCHRE", "MAUVE", "AQUAMARINE", "TAUPE"];
+    var NEW_SUPERWEAPONS = ["SUN OBLITERATOR", "MOONSQUISHER", "WORLD EATER", "PLANET ZESTER", "SUPERCONDUCTING SUPERCOLLIDER"];
+    var SPACE_STATION_CAPABILITIES = ["BLOWING UP A PLANET WITH A BUNCH OF BEAMS OF ENERGY THAT COMBINE INTO ONE",
+       "BLOWING UP A BUNCH OF PLANETS WITH ONE BEAM OF ENERGY THAT SPLITS INTO MANY",
+       "CUTTING A PLANET IN HALF AND SMASHING THE HALVES TOGETHER LIKE TWO CYMBALS",
+       "INCREASING THE CO2 LEVELS IN A PLANETS ATMOSPHERE, CAUSING RAPID HEATING",
+       "TRIGGERING THE END CREDITS BEFORE THE MOVIE IS DONE"];
+    var OLD_ENEMIES = ["BOBA FETT", "SALACIOUS CRUMB", "THE SPACE SLUG", "THE BOTTOM HALF OF DARTH MAUL", "YOUTUBE COMMENTERS"];
+    var BATTLE_FEATURES = ["A BOW THAT SHOOTS LITTLE LIGHTSABER-HEADED ARROWS",
+       "X-WINGS AND TIE FIGHTERS DODGING THE GIANT LETTERS OF THE OPENING CRAWL",
+       "A SITH EDUCATIONAL DISPLAY THAT USES FORCE LIGHTNING TO DEMONSTRATE THE DIELECTRIC BREAKDOWN OF AIR",
+       "KYLO REN PUTTING ON ANOTHER HELMET OVER HIS SMALLER ONE",
+       "A SITH CAR WASH WHERE THE BRISTLES ON THE BRUSHES ARE LITTLE LIGHTSABERS"];
+    var PARENTS_1 = ["LUKE", "LEIA", "HAN", "OBI-WAN", "A RANDOM JUNK TRADER"];
+    var PARENTS_2 = ["POE", "BB-8", "AMILYN HOLDO", "LAURA DERN", "A RANDOM JUNK TRADER", "THAT ONE DROID FROM THE JAWA SANDCRAWLER THAT SAYS GONK"];
+    function initAllText() {
+      initText(document.getElementById('lightsaberColor'), LIGHTSABER_COLORS);
+      initText(document.getElementById('newVillian'), NEW_VILLIANS);
+      initText(document.getElementById('newFriend'), NEW_FRIENDS);
+      initText(document.getElementById('newSuperweapon'), NEW_SUPERWEAPONS);
+      initText(document.getElementById('spaceStationCapability'), SPACE_STATION_CAPABILITIES);
+      initText(document.getElementById('oldEnemy'), OLD_ENEMIES);
+      initText(document.getElementById('battleFeature'), BATTLE_FEATURES);
+      initText(document.getElementById('parent1'), PARENTS_1);
+      initText(document.getElementById('parent2'), PARENTS_2);
+    }
+    function refreshText(element, items) {
+      var dataIndex = element.getAttribute("data-idx");
+      setText(element, items, ++dataIndex);
+    }
+    function initText(element, items) {
+      var dataIndex = Math.floor(Math.random()*items.length);
+      setText(element, items, dataIndex);
+      element.classList.add("refreshable");
+      element.onclick = function(){refreshText(element, items);};
+    }
+    function setText(element, items, dataIndex) {
+      element.setAttribute("data-idx", dataIndex);
+      element.innerHTML = items[dataIndex % items.length];
+    }
+    function randomItem(items) {
+      return items[Math.floor(Math.random()*items.length)];
+    }
+    </script>
+  </head>
+  <body onload="initAllText();">
+  <div class="container">
+    <h1>STAR WARS SPOILER GENERATOR</h1>
+    <p>Generated based on <a href="https://xkcd.com/2243/">https://xkcd.com/2243/</a>.
+    Font from <a href="https://github.com/ipython/xkcd-font">https://github.com/ipython/xkcd-font</a>.</p>
+    <div class="panel panel-default">
+      <div class="panel-body" style="font-family: xkcd-script; font-size: 16px;">
+        <p>In this star wars movie, our heroes return to take on the first order and new villian <a id='newVillian'>...</a>
+        with help from their new friend <a id='newFriend'>...</a>.</p>
+        <p>Rey builds a new lightsaber with a
+        <a id='lightsaberColor'>...</a>
+        blade, and they head out to confront the first order's new superweapon, the <a id='newSuperweapon'>...</a>,
+        a space station capable of <a id='spaceStationCapability'>...</a>.</p>
+        <p>They unexpectedly join forces with their old enemy <a id='oldEnemy'>...</a>
+        and destroy the superweapon in a battle featuring <a id='battleFeature'>...</a>.</p>
+        <p>P.S. Rey's parents are <a id='parent1'>...</a> and <a id='parent2'>...</a>.</p>
+      </div>
+    </div>
+  </div>
+  </body>
+</html>
